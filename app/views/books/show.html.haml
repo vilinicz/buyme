@@ -1,0 +1,16 @@
+.large-3.small-12.column
+  = image_tag @book.image_url
+.large-9.small-12.column
+  %h3
+    = @book.title
+    (#{@book.release_year})
+
+  %p.label.book-label.radius.mb1
+    $ #{@book.price}
+  %p= @book.description
+
+  - if signed_in?
+    = link_to "", class: "button", data: {target: @cart_action, addUrl: add_to_cart_path(@book), removeUrl: remove_from_cart_path(@book)} do
+      %i.fi-shopping-cart
+      %span= @cart_action
+      Cart
